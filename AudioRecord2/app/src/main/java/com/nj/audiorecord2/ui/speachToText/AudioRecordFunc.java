@@ -158,7 +158,10 @@ public class AudioRecordFunc {
         }
         int SpTime = 0;
         int StTime = 0;
+
+        short[] buffer = new short[bufferSizeInBytes];
         while (isRecord == true) {
+            int readSize = audioRecord.read(buffer, 0, bufferSizeInBytes);
             readsize = audioRecord.read(audiodata, 0, bufferSizeInBytes);
             if (AudioRecord.ERROR_INVALID_OPERATION != readsize && fos!=null) {
                 try {
@@ -166,10 +169,10 @@ public class AudioRecordFunc {
 
                     Message msg = Message.obtain(); //推奨
                     msg.what = 1;
-                    msg.obj = "speak: " + SpTime + "\nstop: " + SpTime + "\n" + String.valueOf(audiodata[0]);
+                    msg.obj = "speak: " + SpTime + "\nstop: " + StTime + "\n" + String.valueOf(buffer[0]);
 
                     SpTime++;
-                    if(SpTime > 5000 | StTime > 100){
+                    if(SpTime > 600 | StTime > 100){
                         //stopRecordAndFile();
                         //httpRequest();
                         //startRecordAndFile();
@@ -177,10 +180,13 @@ public class AudioRecordFunc {
                         StTime = 0;
 
                     }
-                    if (audiodata[0] < 100 && audiodata[0] > -100) {
+                    int lee = 3000;
+                    if (buffer[0] < lee && buffer[0] > -lee) {
                         StTime++;
+                    }else{
+                        StTime = 0;
                     }
-                    if((SpTime % 100) == 0) {
+                    if((SpTime % 10) == 0) {
                         //ハンドラへのメッセージ送信
                         mhandler.sendMessage(msg);
                     }

@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <SurfaceView
-        android:id="@+id/visualizer"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
-
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="match_parent"
