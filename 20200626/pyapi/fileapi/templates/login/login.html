@@ -1,0 +1,8 @@
+<h1>Please Login</h1>
+
+<form action="{% url 'login' %}" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="TudzY3B4YNAzZsPx67TxhBdgwBle28qMGaEyzHRVyhm5clyZWxpvZVk6D1AMLayj">
+<p><label for="id_username">Username:</label> <input type="text" name="id" required id="id"></p>
+<p><label for="id_password">Password:</label> <input type="password" name="pass" required id="pass"></p>
+<input type="submit" value="Login">
+</form>

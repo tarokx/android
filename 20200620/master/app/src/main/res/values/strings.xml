@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">master</string>
+    <string name="title_home">ログイン</string>
+    <string name="title_dashboard">写真撮影</string>
+    <string name="title_notifications">写真アップロード</string>
+    <string name="prompt_email">ID</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">ログイン</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="LoginUrl">http://192.168.10.47:8000/fileapi/login/</string>
+    <string name="button">撮影</string>
+    <string name="description">画像</string>
+
+</resources>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "985584020383",
+    "firebase_url": "https://graphic-tensor-237707.firebaseio.com",
+    "project_id": "graphic-tensor-237707",
+    "storage_bucket": "graphic-tensor-237707.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985584020383:android:7a286b84f4697bf9242baa",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985584020383-qehnpnodvl6kt8k0p37o0uhd7e9a9g9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpHW0oXcxdKArKOIDjyrUY0VWCyEbju0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985584020383-qehnpnodvl6kt8k0p37o0uhd7e9a9g9p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

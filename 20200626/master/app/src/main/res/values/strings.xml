@@ -1,0 +1,29 @@
+<resources>
+
+    <string name="app_name">master</string>
+    <string name="title_home">ログイン</string>
+    <string name="title_dashboard">写真撮影</string>
+    <string name="title_notifications">文字検出</string>
+    <string name="title_objsize">物体サイズ検出</string>
+    <string name="prompt_email">ID</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">ログイン</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="button">撮影</string>
+    <string name="description">画像</string>
+    <string name="title_objdis">距離測定</string>
+    <string name="choose">画像選択</string>
+    <string name="upload">アップロード</string>
+    <string name="back">戻る</string>
+    <string name="BaseUrl">http://160.16.146.245:8000/</string>
+    <string name="ObjSizeUrl">http://160.16.146.245:8000/fileapi/objsize/</string>
+    <string name="ObjDisUrl">http://160.16.146.245:8000/fileapi/objdis/</string>
+    <string name="ViewImg">http://160.16.146.245:8000/fileapi/showimg/</string>
+    <string name="TextUpload">http://160.16.146.245:8000/fileapi/do_upload</string>
+    <string name="LoginUrl">http://160.16.146.245:8000/fileapi/login/</string>
+
+</resources>

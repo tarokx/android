@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GPStest</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="setBtn">富士山</string>
+    <string name="getBtn">緯度経度取得</string>
+    <string name="Range">表示範囲取得</string>
+    <string name="getAddr">住所取得</string>
+    <string name="getLocate">検索</string>
+</resources>

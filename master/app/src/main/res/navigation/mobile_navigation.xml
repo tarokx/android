@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.test.ui.login.LoginFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.test.ui.camera.CameraFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.test.ui.ocr.OcrFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_objsize"
+        android:name="com.example.test.ui.objsize.ObjSizeFragment"
+        android:label="@string/title_objsize"
+        tools:layout="@layout/fragment_objsize" />
+    <fragment
+        android:id="@+id/navigation_objdis"
+        android:name="com.example.test.ui.objdis.ObjDisFragment"
+        android:label="@string/title_objdis"
+        tools:layout="@layout/fragment_objdis" />
+    <fragment
+        android:id="@+id/navigation_speach"
+        android:name="com.example.test.ui.speachToText.speachFragment"
+        android:label="@string/title_speach"
+        tools:layout="@layout/fragment_totext" />
+</navigation>
