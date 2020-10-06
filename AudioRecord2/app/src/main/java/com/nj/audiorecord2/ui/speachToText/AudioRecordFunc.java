@@ -55,7 +55,8 @@ public class AudioRecordFunc {
 
     public synchronized static AudioRecordFunc getInstance(Handler handler)
     {
-        mhandler = handler;
+        if(mhandler == null)
+            mhandler = handler;
         if(mInstance == null)
             mInstance = new AudioRecordFunc();
         return mInstance;
@@ -172,21 +173,23 @@ public class AudioRecordFunc {
                     msg.obj = "speak: " + SpTime + "\nstop: " + StTime + "\n" + String.valueOf(buffer[0]);
 
                     SpTime++;
-                    if(SpTime > 600 | StTime > 100){
-                        //stopRecordAndFile();
-                        //httpRequest();
-                        //startRecordAndFile();
+                    if(SpTime > 100 | StTime > 30){
+                        if(SpTime > 50 ) {
+                            this.stopRecordAndFile();
+                            this.httpRequest();
+                            this.startRecordAndFile();
+                        }
                         SpTime = 0;
                         StTime = 0;
 
                     }
-                    int lee = 3000;
+                    int lee = 600;
                     if (buffer[0] < lee && buffer[0] > -lee) {
                         StTime++;
                     }else{
                         StTime = 0;
                     }
-                    if((SpTime % 10) == 0) {
+                    if((SpTime % 3) == 0) {
                         //ハンドラへのメッセージ送信
                         mhandler.sendMessage(msg);
                     }
