@@ -181,7 +181,6 @@ public class AudioRecordFunc {
                         }
                         SpTime = 0;
                         StTime = 0;
-
                     }
                     int lee = 600;
                     if (buffer[0] < lee && buffer[0] > -lee) {
