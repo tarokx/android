@@ -162,7 +162,7 @@ public class AudioRecordFunc {
 
         short[] buffer = new short[bufferSizeInBytes];
         while (isRecord == true) {
-            int readSize = audioRecord.read(buffer, 0, bufferSizeInBytes);
+            readsize = audioRecord.read(buffer, 0, bufferSizeInBytes);
             readsize = audioRecord.read(audiodata, 0, bufferSizeInBytes);
             if (AudioRecord.ERROR_INVALID_OPERATION != readsize && fos!=null) {
                 try {
