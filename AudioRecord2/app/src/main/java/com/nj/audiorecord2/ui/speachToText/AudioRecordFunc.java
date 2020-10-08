@@ -178,9 +178,9 @@ public class AudioRecordFunc {
                 try {
                     fos.write(audiodata);
 
-                    Message msg = Message.obtain(); //推奨
-                    msg.what = 1;
-                    msg.obj = "speak: " + SpTime + "\nstop: " + StTime + "\n" + String.valueOf(buffer);
+//                    Message msg = Message.obtain(); //推奨
+//                    msg.what = 1;
+//                    msg.obj = "speak: " + SpTime + "\nstop: " + StTime + "\n" + String.valueOf(buffer);
 
                     SpTime++;
                     if(SpTime > 600 | StTime > 20){
@@ -210,10 +210,10 @@ public class AudioRecordFunc {
                     }else{
                         StTime = 0;
                     }
-                    if((SpTime % 3) == 0) {
-                        //ハンドラへのメッセージ送信
-                        mhandler.sendMessage(msg);
-                    }
+//                    if((SpTime % 3) == 0) {
+//                        //ハンドラへのメッセージ送信
+//                        mhandler.sendMessage(msg);
+//                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

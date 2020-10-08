@@ -77,11 +77,11 @@ public class MainActivity extends Activity {
                 switch(message.what) {
                     case 1:
                         // msg.objはObject型なのでキャストする必要がある
-                        ana.setText((String) message.obj);
+                        txt.setText((String) message.obj);
                         break;
                     case 2:
                         // msg.objはObject型なのでキャストする必要がある
-                        txt.setText((String) message.obj);
+                        ana.setText((String) message.obj);
                         break;
                     default :
                         break;
