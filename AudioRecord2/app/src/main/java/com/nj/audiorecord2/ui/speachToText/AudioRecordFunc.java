@@ -1,11 +1,15 @@
 package com.nj.audiorecord2.ui.speachToText;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 import android.media.AudioFormat;
@@ -106,9 +110,9 @@ public class AudioRecordFunc {
         if (audioRecord != null) {
             System.out.println("stopRecord");
             isRecord = false;//停止文件写入
-            audioRecord.stop();
-            audioRecord.release();//释放资源
-            audioRecord = null;
+            //audioRecord.stop();
+            //audioRecord.release();//释放资源
+            //audioRecord = null;
         }
     }
 
@@ -131,7 +135,11 @@ public class AudioRecordFunc {
     class AudioRecordThread implements Runnable {
         @Override
         public void run() {
-            writeDateTOFile();//往文件中写入裸数据
+            try {
+                writeDateTOFile();//往文件中写入裸数据
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             copyWaveFile(AudioName, NewAudioName);//给裸数据加上头文件
 
 
@@ -143,9 +151,8 @@ public class AudioRecordFunc {
      * 如果需要播放就必须加入一些格式或者编码的头信息。但是这样的好处就是你可以对音频的 裸数据进行处理，比如你要做一个爱说话的TOM
      * 猫在这里就进行音频的处理，然后重新封装 所以说这样得到的音频比较容易做一些音频的处理。
      */
-    private void writeDateTOFile() {
+    private void writeDateTOFile() throws IOException {
         // new一个byte数组用来存一些字节数据，大小为缓冲区大小
-        byte[] audiodata = new byte[bufferSizeInBytes];
         FileOutputStream fos = null;
         int readsize = 0;
         try {
@@ -159,31 +166,46 @@ public class AudioRecordFunc {
         }
         int SpTime = 0;
         int StTime = 0;
+        byte[] audiodata = new byte[bufferSizeInBytes];
 
-        short[] buffer = new short[bufferSizeInBytes];
+        short buffer = 0;
         while (isRecord == true) {
-            readsize = audioRecord.read(buffer, 0, bufferSizeInBytes);
+            //readsize = audioRecord.read(buffer, 0, 2);
             readsize = audioRecord.read(audiodata, 0, bufferSizeInBytes);
+            buffer = ByteBuffer.wrap(audiodata).getShort(1);
+
             if (AudioRecord.ERROR_INVALID_OPERATION != readsize && fos!=null) {
                 try {
                     fos.write(audiodata);
 
                     Message msg = Message.obtain(); //推奨
                     msg.what = 1;
-                    msg.obj = "speak: " + SpTime + "\nstop: " + StTime + "\n" + String.valueOf(buffer[0]);
+                    msg.obj = "speak: " + SpTime + "\nstop: " + StTime + "\n" + String.valueOf(buffer);
 
                     SpTime++;
-                    if(SpTime > 100 | StTime > 30){
-                        if(SpTime > 50 ) {
-                            this.stopRecordAndFile();
+                    if(SpTime > 600 | StTime > 20){
+                        if(SpTime > 30 ) {
+                            audioRecord.stop();
+
+                            copyWaveFile(AudioName, NewAudioName);//给裸数据加上头文件
                             this.httpRequest();
-                            this.startRecordAndFile();
+
+                            try {
+                                File file = new File(AudioName);
+                                if (file.exists()) {
+                                    file.delete();
+                                }
+                                fos = new FileOutputStream(file);// 建立一个可存取字节的文件
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            audioRecord.startRecording();
                         }
                         SpTime = 0;
                         StTime = 0;
                     }
-                    int lee = 600;
-                    if (buffer[0] < lee && buffer[0] > -lee) {
+                    int lee = 300;
+                    if (buffer < lee && buffer > -lee) {
                         StTime++;
                     }else{
                         StTime = 0;
@@ -282,7 +304,7 @@ public class AudioRecordFunc {
         long totalDataLen = totalAudioLen + 36;
         long longSampleRate = AudioFileFunc.AUDIO_SAMPLE_RATE;
         int channels = 2;
-        long byteRate = 16 * AudioFileFunc.AUDIO_SAMPLE_RATE * channels / 8;
+        long byteRate = 16 * channels / 8;
         byte[] data = new byte[bufferSizeInBytes];
         try {
             in = new FileInputStream(inFilename);
