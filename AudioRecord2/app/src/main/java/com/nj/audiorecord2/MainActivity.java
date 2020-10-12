@@ -66,7 +66,8 @@ public class MainActivity extends Activity {
 
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.RECORD_AUDIO},
                 1);
 
 
@@ -231,7 +232,7 @@ public class MainActivity extends Activity {
                             final ArrayList<String> list = new ArrayList<>();
                             int len = jsonArray.length();
                             for (int i = 0; i < len; i++) {
-                                list.add(jsonArray.get(i).toString());
+                                list.add(jsonArray.getJSONObject(i).getString("massage"));
                             }
 
                             StringBuilder listString = new StringBuilder();

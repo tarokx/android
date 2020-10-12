@@ -183,8 +183,8 @@ public class AudioRecordFunc {
 //                    msg.obj = "speak: " + SpTime + "\nstop: " + StTime + "\n" + String.valueOf(buffer);
 
                     SpTime++;
-                    if(SpTime > 600 | StTime > 20){
-                        if(SpTime > 30 ) {
+                    if(SpTime > 600 | StTime > 5){
+                        if(SpTime > 10 ) {
                             audioRecord.stop();
 
                             copyWaveFile(AudioName, NewAudioName);//给裸数据加上头文件
@@ -274,7 +274,7 @@ public class AudioRecordFunc {
                             final ArrayList<String> list = new ArrayList<>();
                             int len = jsonArray.length();
                             for (int i = 0; i < len; i++) {
-                                list.add(jsonArray.get(i).toString());
+                                list.add(jsonArray.getJSONObject(i).getString("message"));
                             }
 
                             StringBuilder listString = new StringBuilder();
